@@ -46,7 +46,9 @@ class VigicruesDataUpdateCoordinator(DataUpdateCoordinator[VigicruesStationData]
         """Initialize."""
         self.client = client
         self.station_id = station_id
-        self.station_details = station_details
+        # Use a copy so mutations (e.g. disabling has_flow_data) don't affect
+        # the caller's object.
+        self.station_details = station_details.model_copy()
         self.device_info = DeviceInfo(
             entry_type=DeviceEntryType.SERVICE,
             identifiers={(DOMAIN, station_id)},
@@ -84,10 +86,17 @@ class VigicruesDataUpdateCoordinator(DataUpdateCoordinator[VigicruesStationData]
                 water_flow = await self.client.get_latest_observations(
                     self.station_id, "Q"
                 )
-            except (ClientError, TimeoutError, ValueError) as err:
+            except (ClientError, TimeoutError) as err:
                 raise UpdateFailed(
                     f"Failed to fetch water flow for station {self.station_id}: {err}"
                 ) from err
+            except ValueError:
+                _LOGGER.warning(
+                    "No water flow observations found for station %s,"
+                    " water flow sensor will not be created",
+                    self.station_id,
+                )
+                self.station_details.has_flow_data = False
 
         return VigicruesStationData(
             station=self.station_details,

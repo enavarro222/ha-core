@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 
 from . import init_integration
+from .conftest import WATER_LEVEL_OBSERVATION
 
 from tests.common import MockConfigEntry, snapshot_platform
 
@@ -172,6 +173,26 @@ async def test_sensor_unavailable_on_update_error(
 
     # Two call have been done, as water flow (that fail) is called after water level
     assert mock_vigicrues_client.get_latest_observations.call_count == 2
+
+
+async def test_sensor_no_flow_data_on_fetch(
+    hass: HomeAssistant,
+    mock_config_entry: MockConfigEntry,
+    mock_vigicrues_client: AsyncMock,
+) -> None:
+    """Test setup succeeds when station has no actual flow data despite metadata."""
+
+    def _side_effect(station_id: str, obs_type: str) -> object:
+        if obs_type == "Q":
+            raise ValueError("No observations found")
+        return WATER_LEVEL_OBSERVATION
+
+    mock_vigicrues_client.get_latest_observations.side_effect = _side_effect
+
+    await init_integration(hass, mock_config_entry)
+
+    assert hass.states.get("sensor.paris_seine_water_level") is not None
+    assert hass.states.get("sensor.paris_seine_water_flow") is None
 
 
 async def test_sensor_coordinator_refresh(
