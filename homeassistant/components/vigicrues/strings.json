@@ -1,0 +1,84 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_service%]",
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+    },
+    "error": {
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "no_stations_found": "No stations found matching your search",
+      "search_term_required": "A search term is required",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    },
+    "step": {
+      "hierarchical_territory": {
+        "data": {
+          "territory": "Territory"
+        },
+        "data_description": {
+          "territory": "Select a hydrological territory (region/basin)"
+        },
+        "title": "Select a territory"
+      },
+      "hierarchical_troncon": {
+        "data": {
+          "troncon": "Watercourse section"
+        },
+        "data_description": {
+          "troncon": "Select a section of the watercourse"
+        },
+        "title": "Select a watercourse section"
+      },
+      "search": {
+        "data": {
+          "search_term": "Search term"
+        },
+        "data_description": {
+          "search_term": "Enter a station name, city, or river name"
+        },
+        "title": "Search for a station"
+      },
+      "select_station": {
+        "data": {
+          "station": "Station"
+        },
+        "data_description": {
+          "station": "Select the hydrological station to add"
+        },
+        "title": "Select a station"
+      },
+      "user": {
+        "data": {
+          "search_method": "Search method"
+        },
+        "data_description": {
+          "search_method": "Choose how you want to find a hydrological station"
+        },
+        "title": "Choose search method"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "water_flow": {
+        "name": "Water flow"
+      },
+      "water_level": {
+        "name": "Water level"
+      }
+    }
+  },
+  "exceptions": {
+    "cannot_connect": {
+      "message": "An error occurred while connecting to the Vigicrues API for {entry}: {error}"
+    }
+  },
+  "selector": {
+    "search_method": {
+      "options": {
+        "hierarchical": "Browse by territory",
+        "search": "Search by name"
+      }
+    }
+  }
+}

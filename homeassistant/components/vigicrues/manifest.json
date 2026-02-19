@@ -1,0 +1,11 @@
+{
+  "domain": "vigicrues",
+  "name": "Vigicrues",
+  "codeowners": ["@enavarro222"],
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/vigicrues",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "quality_scale": "platinum",
+  "requirements": ["vigicrues==0.1.1"]
+}

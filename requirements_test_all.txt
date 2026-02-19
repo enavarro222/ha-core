@@ -2688,6 +2688,9 @@ victron-ble-ha-parser==0.4.10
 # homeassistant.components.victron_remote_monitoring
 victron-vrm==0.1.8
 
+# homeassistant.components.vigicrues
+vigicrues==0.1.1
+
 # homeassistant.components.vilfo
 vilfo-api-client==0.5.0
 

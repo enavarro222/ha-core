@@ -767,6 +767,7 @@ FLOWS = {
         "vicare",
         "victron_ble",
         "victron_remote_monitoring",
+        "vigicrues",
         "vilfo",
         "vivotek",
         "vizio",

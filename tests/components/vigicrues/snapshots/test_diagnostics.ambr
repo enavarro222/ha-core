@@ -1,0 +1,39 @@
+# serializer version: 1
+# name: test_entry_diagnostics
+  dict({
+    'config_entry_data': dict({
+      'data': dict({
+        'station_id': 'A123456789',
+      }),
+      'disabled_by': None,
+      'discovery_keys': dict({
+      }),
+      'domain': 'vigicrues',
+      'minor_version': 1,
+      'options': dict({
+      }),
+      'pref_disable_new_entities': False,
+      'pref_disable_polling': False,
+      'source': 'user',
+      'subentries': list([
+      ]),
+      'title': 'Paris - Seine (Seine)',
+      'unique_id': 'A123456789',
+      'version': 1,
+    }),
+    'station_data': dict({
+      'station': dict({
+        '__type': "<class 'vigicrues.models.StationDetails'>",
+        'repr': "StationDetails(id='A123456789', name='Paris - Seine', river='Seine', city='Paris', latitude=48.8566, longitude=2.3522, picture_url=None, commune_code='75056', is_prediction_station=True, has_height_data=True, has_flow_data=True, has_predictions=True, historical_floods=[], related_stations=[])",
+      }),
+      'water_flow': dict({
+        '__type': "<class 'vigicrues.models.Observation'>",
+        'repr': "Observation(timestamp=datetime.datetime(2024, 4, 27, 10, 0, tzinfo=datetime.timezone.utc), value=125.5, type=<ObservationType.FLOW: 'Q'>, unit='m3/s')",
+      }),
+      'water_level': dict({
+        '__type': "<class 'vigicrues.models.Observation'>",
+        'repr': "Observation(timestamp=datetime.datetime(2024, 4, 27, 10, 0, tzinfo=datetime.timezone.utc), value=2.45, type=<ObservationType.HEIGHT: 'H'>, unit='m')",
+      }),
+    }),
+  })
+# ---
